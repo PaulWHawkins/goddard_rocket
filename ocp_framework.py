@@ -1,3 +1,8 @@
+"""
+Framework for solving a nonlinear optimal control problem with Hermite Simpson collocation and 
+casadi
+"""
+
 import casadi as ca
 import matplotlib.pyplot as plt
 import numpy as np

@@ -1,5 +1,7 @@
-"""Constants taken from John T. Betts's Practical Methods for Optimal Control and Estimation 
-Using Nonlinear Programming, Second Edition"""
+"""
+Constants taken from John T. Betts's Practical Methods for Optimal Control and Estimation 
+Using Nonlinear Programming, Second Edition
+"""
 
 m0 = 3
 mTf = 1

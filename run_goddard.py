@@ -1,5 +1,5 @@
 """
-Script to run Goddard Rocket
+Script to run Goddard Rocket problem
 """
 
 from ocp_framework import OCP
