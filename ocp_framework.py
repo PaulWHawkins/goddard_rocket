@@ -3,6 +3,7 @@ Framework for solving a nonlinear optimal control problem with Hermite Simpson c
 casadi
 """
 
+from abc import ABC
 import casadi as ca
 import matplotlib.pyplot as plt
 import numpy as np
@@ -17,7 +18,7 @@ class PhaseSettings(BaseModel):
     single_phase: bool = False
 
 
-class OcpPhase:
+class OcpPhase(ABC):
     """Class with methods used for all OCP problems"""
 
     default_N = 50
