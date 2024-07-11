@@ -78,13 +78,10 @@ class OcpPhase(ABC):
         title: Optional[str] = None,
         makeFig=True,
     ):
-        """Generate plot of final states"""
+        """Generate single plot of final states"""
 
         x = self.opti.value(self.x)
-        print(f"Final values of x: {x[:, -1]}")
         u = self.opti.value(self.u)
-        print(f"Final values of u: {u[-1]}")
-        print(f"Average value of u for stage:  {np.mean(u)}")
 
         t0 = self.opti.value(self.t0)
         tf = self.opti.value(self.tf)
@@ -215,9 +212,7 @@ class OCP:
                 makeFig=False,
             )
 
-        if self.n_phases > 1:
-            plt.legend()
-
+        plt.legend()
         plt.title(
             f"{self.n_phases} phase with hmax = {ca.mmax(self.opti.value(self.x[0, :]))}"
         )
@@ -241,6 +236,7 @@ class OCP:
             plt.savefig(base_save_name + "_" + u_name)
             plt.close()
 
+        # Make plot for each of the states and controls
         for idx, x_name in enumerate(x_names):
             plt.figure()
             for phase_idx in range(self.n_phases):
