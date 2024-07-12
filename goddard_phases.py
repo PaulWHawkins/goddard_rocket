@@ -23,11 +23,9 @@ class GoddardRocketPhase(OcpPhase):
     Supports 1-3 phases.
     """
 
-    def __init__(
-        self, opti: ca.Opti, settings: GoddardSettings, N: Optional[int] = None
-    ) -> None:
+    def __init__(self, opti: ca.Opti, settings: GoddardSettings) -> None:
 
-        super().__init__(opti, settings=settings, N=N)
+        super().__init__(opti, settings=settings)
 
         # Setting state vars
         x = self.opti.variable(3, self.N + 1)
@@ -48,7 +46,7 @@ class GoddardRocketPhase(OcpPhase):
         self.opti.subject_to(ca.Opti_bounded(mTf, x[2, :], m0))
         self.opti.subject_to(self.tf > self.t0)
 
-        # Set input contstraints
+        # Set input constraints
         self.opti.subject_to(ca.Opti_bounded(umin, u[0, :], umax))
 
         # Set intial values
@@ -114,7 +112,7 @@ class GoddardRocketPhase(OcpPhase):
         self.opti.subject_to(ca.Opti_bounded(0, self.x[1, 0], 0))
         self.opti.subject_to(ca.Opti_bounded(m0, self.x[2, 0], m0))
 
-        # Set input contstraints
+        # Set input constraints
         if not self.settings.single_phase:
             self.opti.subject_to(self.u[0, :] == umax)
 
