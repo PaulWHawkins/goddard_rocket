@@ -5,6 +5,10 @@ Code for the solution of the Goddard Rocket optimal control problem.
 Problem formulation and singular arc path constraint adapted from John T. Betts's Practical Methods 
 for Optimal Control and Estimation Using Nonlinear Programming, Second Edition. 
 
+## GoddardRocket1D.pdf
+
+PDF giving overview of project.
+
 ## ocp_framework.py
 
 Contains the basic outline for an optimal control problem to be solved using Casadi. 
@@ -16,3 +20,7 @@ Contains the implementation of the Goddard Problem
 ## run_goddard.py
 
 Code for running the three variations of the goddard rocket problem
+
+## constants.py
+
+Constants used for the problem. Taken from the Betts book.  
