@@ -16,27 +16,24 @@ class PhaseSettings(BaseModel):
 
     phase: PositiveInt = 1
     single_phase: bool = False
+    N: int = 50  # number of collocation points
 
 
 class OcpPhase(ABC):
     """Class with methods used for all OCP problems"""
 
-    default_N = 50
-
-    def __init__(
-        self, opti: ca.Opti, settings: PhaseSettings, N: Optional[int] = None
-    ) -> None:
+    def __init__(self, opti: ca.Opti, settings: PhaseSettings) -> None:
 
         self.settings = settings
         self.sol: ca.OptiSol
-        self.opti: ca.Opti = opti
+        self.opti: ca.Opti = opti  # shared across all phases
 
-        self.N: int = N if N is not None else self.default_N
+        self.N: int = settings.N
 
-        self.x: ca.MX
-        self.u: ca.MX
-        self.t0: ca.MX = opti.variable(1, 1)
-        self.tf: ca.MX = opti.variable(1, 1)
+        self.x: ca.MX  # state variables
+        self.u: ca.MX  # control variables
+        self.t0: ca.MX = opti.variable(1, 1)  # phase initial time
+        self.tf: ca.MX = opti.variable(1, 1)  # phase final time
 
     def set_defect(self, x: ca.MX, u: ca.MX, h: Union[float, ca.SX]) -> None:
         """Set defect for a phase/ocp"""
